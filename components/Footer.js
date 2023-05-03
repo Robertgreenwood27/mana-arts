@@ -8,7 +8,7 @@ const Footer = () => {
           Website by Robbie Greenwood
         </div>
         <div className="text-center text-gray-400">
-          <a href="https://manaarts.com" className="text-gray-400 hover:text-white">
+          <a href="https://mana-studio.vercel.app/desk" className="text-gray-400 hover:text-white">
             Mana Arts&copy; {new Date().getFullYear()}
           </a>
         </div>
