@@ -24,7 +24,7 @@ async function handlePayment(req, res) {
       confirm: true,
     });
   
-    if (payment.status === "succeeded") {
+    if (payment.status === "success") {
       res.status(200).json({ success: true });
     } else {
       res.status(400).json({ success: false, message: "Payment failed" });
