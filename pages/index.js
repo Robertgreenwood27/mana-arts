@@ -12,7 +12,7 @@ export default function IndexPage({ products }) {
         <Image src="/logo.png" alt="Logo" width={200} height={200} />
       </div>
       <div className="container mx-auto py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 justify-items-center">
           {products.map((product) => (
             <Link key={product._id} href={`/products/${product.slug.current}`} legacyBehavior>
               <a>
