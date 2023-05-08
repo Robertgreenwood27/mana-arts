@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
     <CartProvider>
       <div  className="bg-zinc-900 text-zinc-300">
       <Header/>
-      <Component {...pageProps} />
+      <Component {...pageProps}  className="p-8"/>
       <Footer/>
       </div>
     </CartProvider>
