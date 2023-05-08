@@ -1,4 +1,4 @@
-const sendEmail = require("../utils/email");
+const sendEmail = require("./email");
 
 async function handlePayment(req, res) {
   const {
