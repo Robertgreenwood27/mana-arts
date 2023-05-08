@@ -179,7 +179,7 @@ const [zipCode, setZipCode] = useState('');
           >
             Send Request
           </button>
-          <Link href="/signin" legacyBehavior>
+          <Link href="/signIn" legacyBehavior>
             <a className="text-purple-500 hover:text-purple-400 text-sm font-semibold ml-4">
               Already have a request? Click here.
             </a>

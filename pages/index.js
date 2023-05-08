@@ -1,9 +1,14 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function Home() {
   const [logoSpin, setLogoSpin] = useState(false);
+
+  useEffect(() => {
+    setLogoSpin(true);
+    setTimeout(() => setLogoSpin(false), 1000);
+  }, []);
 
   const handleLogoClick = () => {
     setLogoSpin(true);
@@ -28,14 +33,14 @@ export default function Home() {
         </Link>
       </section>
       <section className="signin-section section min-h-screen flex items-center justify-center">
-        <Link href="/signin" legacyBehavior>
+        <Link href="/signIn" legacyBehavior>
           <a className="bg-black text-white py-6 px-8 rounded-lg shadow-lg cursor-pointer mt-8 border border-white text-center">
             <p className="text-3xl font-bold mb-2">See your stuff</p>
           </a>
         </Link>
       </section>
       <section className="lookaround-section section-alt min-h-screen flex items-center justify-center">
-        <Link href="/signin" legacyBehavior>
+        <Link href="/products/[slug].js" legacyBehavior>
           <a className="bg-black text-white py-6 px-8 rounded-lg shadow-lg cursor-pointer mt-8 border border-white text-center">
             <p className="text-3xl font-bold mb-2">Look around</p>
           </a>
