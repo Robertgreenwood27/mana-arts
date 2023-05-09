@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ProductCard from '../../components/ProductCard';
 import client from "../../sanity.config";
-import Spinninglogo from "../../components/SpinningLogo"
+import SpinningLogo from '../../components/SpinningLogo';
 
 export default function CustomerProductsPage({ products }) {
   return (
