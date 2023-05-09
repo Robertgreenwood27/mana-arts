@@ -24,6 +24,10 @@
       }
     };
 
+    const handleBackButtonClick = () => {
+      window.history.back();
+    }
+
     return (
       <div className="max-w-screen-lg mx-auto py-16">
         <div className="grid md:grid-cols-2 gap-8">
@@ -48,11 +52,9 @@
           <div className="md:order-2">
             <div className="flex justify-between items-center mb-4">
               <h1 className="text-3xl font-bold">{product.name}</h1>
-              <Link href="/" legacyBehavior>
-                <button className="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-md shadow">
-                  <span className="ml-2">Back</span>
-                </button>
-              </Link>
+              <button className="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2 rounded-md shadow" onClick={handleBackButtonClick}>
+              <span className="ml-2">Back</span>
+            </button>
             </div>
             <p className="text-2xl font-semibold mb-2">${product.price}</p>
             <p className="text-zinc-400 mb-8">{product.description}</p>

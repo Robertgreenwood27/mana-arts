@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Router from 'next/router'
 
+
 const SignIn = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -8,11 +9,11 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const slug = `${firstName}-${lastName}`.toLowerCase()
-    Router.push(`/products/${slug}`)
+    Router.push(`/customers/${slug}`)
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundImage: "url('/purple.png')", backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
       <div className="bg-zinc-800 p-8 rounded-xl shadow-md w-full max-w-md">
         <form onSubmit={handleSubmit} className="">
           <div className="mb-4">

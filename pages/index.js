@@ -1,29 +1,14 @@
-import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
+import SpinningLogo from "../components/SpinningLogo"
 
 export default function Home() {
-  const [logoSpin, setLogoSpin] = useState(false);
-
-  useEffect(() => {
-    setLogoSpin(true);
-    setTimeout(() => setLogoSpin(false), 1000);
-  }, []);
-
-  const handleLogoClick = () => {
-    setLogoSpin(true);
-    setTimeout(() => setLogoSpin(false), 1000); // stop spinning after 1 second
-  };
 
   return (
     <div className="flex flex-col">
       <section className="intro-section section flex flex-col justify-center items-center">
-        <div className="text-white text-center items-center">
-          <h1 className="text-4xl font-bold mb-4">Mana Arts</h1>
-          <div className={logoSpin ? "spin" : ""} onClick={handleLogoClick}>
-            <Image src="/logo.png" alt="Logo" width={200} height={200} />
-          </div>
-        </div>
+          <SpinningLogo />
       </section>
       <section className="request-section section-alt min-h-screen flex items-center justify-center">
         <Link href="/request" legacyBehavior>
