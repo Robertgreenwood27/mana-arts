@@ -2,6 +2,8 @@
 //\pages\request.js
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 
 
 
@@ -18,45 +20,47 @@ const [zipCode, setZipCode] = useState('');
   const [description, setDescription] = useState('');
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-        mailingAddress,
-        city,
-        state,
-        zipCode,
-        phoneNumber,
-        description,
-      }),
-      
-    });
-  
-    if (response.ok) {
-      console.log('Email sent successfully.');
-    } else {
-      console.error('Failed to send the email.');
-    }
-  
-    // Reset form fields
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setMailingAddress('');
-    setCity('');
-    setState('');
-    setZipCode('');
-    setPhoneNumber('');
-    setDescription('');
-  };
+  const router = useRouter();
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const response = await fetch('/api/send-email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      firstName,
+      lastName,
+      email,
+      mailingAddress,
+      city,
+      state,
+      zipCode,
+      phoneNumber,
+      description,
+    }),
+  });
+
+  if (response.ok) {
+    console.log('Email sent successfully.');
+    router.push('/requestSent');
+  } else {
+    console.error('Failed to send the email.');
+  }
+
+  // Reset form fields
+  setFirstName('');
+  setLastName('');
+  setEmail('');
+  setMailingAddress('');
+  setCity('');
+  setState('');
+  setZipCode('');
+  setPhoneNumber('');
+  setDescription('');
+};
   
   
 
