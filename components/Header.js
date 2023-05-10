@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import CartContext from "../components/CartContext";
@@ -11,7 +11,21 @@ const Header = () => {
 
   useOnClickOutside(ref, () => setModalOpen(false));
 
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (isModalOpen && e.target.closest("a") !== null) {
+        setModalOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [isModalOpen]);
+
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between px-8 py-4 text-white shadow-md bg-rose-950">
@@ -105,7 +119,7 @@ const Header = () => {
               </div>
             </div>
           ) : (
-            <button onClick={() => setModalOpen(!isModalOpen)}>
+            <button onClick={() => setModalOpen(!isModalOpen)} className="relative">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -120,11 +134,16 @@ const Header = () => {
                   d="M4 6h16M4 12h16m-7 6h7"
                 />
               </svg>
+              {cartItemCount > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
             </button>
           )}
         </div>
       </header>
-);
-};
-
-export default Header;      
+    );
+  };
+  
+  export default Header;      

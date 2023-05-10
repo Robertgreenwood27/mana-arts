@@ -1,3 +1,4 @@
+// components/CheckoutForm.js
 import React from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useRouter } from "next/router";
@@ -141,12 +142,13 @@ export default function CheckoutForm({ totalCost, cartItems }) {
       />
       <CardElement className="border border-zinc-600 p-2 rounded-md" />
       <button
-        type="submit"
-        disabled={!stripe}
-        className="bg-blue-600 text-white w-full px-4 py-2 mt-4 rounded-md"
-      >
-        Pay
-      </button>
+  type="submit"
+  disabled={!stripe}
+  className="bg-blue-600 text-white w-full px-4 py-2 mt-4 rounded-md"
+>
+  Pay ${totalCost.toFixed(2)}
+</button>
+
       {error && <p className="text-red-600 mt-2">{error}</p>}
     </form>
   );
