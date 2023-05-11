@@ -1,3 +1,4 @@
+//components/header
 import React, { useContext, useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";

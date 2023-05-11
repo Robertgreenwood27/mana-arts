@@ -49,10 +49,9 @@ export default async (req, res) => {
           await sendEmail({
             to: process.env.YOUR_EMAIL_ADDRESS,
             subject: "New payment received",
-            text: `Customer information: ${JSON.stringify(
-              customer
-            )}\nPayment information: ${JSON.stringify(payment)}`,
+            text: `Customer information:\n${formatCustomerPaymentInfo(customer)}\nPayment information:\n${formatCustomerPaymentInfo(payment)}`,
           });
+          
 
           res.status(200).json({ success: true });
         } catch (emailError) {
@@ -70,4 +69,11 @@ export default async (req, res) => {
     res.setHeader("Allow", "POST");
     res.status(405).end("Method Not Allowed");
   }
+
+  function formatCustomerPaymentInfo(obj) {
+    return Object.entries(obj)
+      .map(([key, value]) => `${key}: ${value}`)
+      .join("\n");
+  }
+  
 };

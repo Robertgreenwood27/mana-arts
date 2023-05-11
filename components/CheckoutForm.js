@@ -1,24 +1,27 @@
 // components/CheckoutForm.js
-import React from "react";
+import React, { useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useRouter } from "next/router";
+import ReactLoading from 'react-loading';
 
 export default function CheckoutForm({ totalCost, cartItems }) {
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
-  const [error, setError] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [addressLine1, setAddressLine1] = React.useState("");
-  const [city, setCity] = React.useState("");
-  const [state, setState] = React.useState("");
-  const [postalCode, setPostalCode] = React.useState("");
-  const [country, setCountry] = React.useState("");
-  const [phoneNumber, setPhoneNumber] = React.useState("");
-  const [email, setEmail] = React.useState("");
+  const [error, setError] = useState("");
+  const [name, setName] = useState("");
+  const [addressLine1, setAddressLine1] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [country, setCountry] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true); // Set loading state to true  
 
     if (!stripe || !elements) {
       return;
@@ -68,6 +71,8 @@ export default function CheckoutForm({ totalCost, cartItems }) {
         setError(data.message); // Set the error message
       }
     }
+    
+    setLoading(false); // Set loading state back to false
   };
 
   return (
@@ -103,10 +108,9 @@ export default function CheckoutForm({ totalCost, cartItems }) {
           value={state}
           onChange={(e) => setState(e.target.value)}
           required
-          className="w-full px-3 py-2 border border-zinc-600 rounded-md"
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-4">
+          className="w-full px-3 py        border border-zinc-600 rounded-md"
+          />
+        </div>
         <input
           type="text"
           placeholder="Postal Code"
@@ -116,40 +120,43 @@ export default function CheckoutForm({ totalCost, cartItems }) {
           className="w-full px-3 py-2 border border-zinc-600 rounded-md"
         />
         <input
-  type="text"
-  placeholder="Country"
-  value="United States"
-  readOnly
-  className="w-full px-3 py-2 border border-zinc-600 rounded-md"
-/>
-
-      </div>
-      <input
-        type="tel"
-        placeholder="Phone Number"
-        value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
-        required
-        className="w-full px-3 py-2 border border-zinc-600 rounded-md"
-      />
-      <input
-        type="email"
-        placeholder="Email Address"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        className="w-full px-3 py-2 border border-zinc-600 rounded-md"
-      />
-      <CardElement className="border border-zinc-600 p-2 rounded-md" />
-      <button
-  type="submit"
-  disabled={!stripe}
-  className="bg-blue-600 text-white w-full px-4 py-2 mt-4 rounded-md"
->
-  Pay ${totalCost.toFixed(2)}
-</button>
-
-      {error && <p className="text-red-600 mt-2">{error}</p>}
-    </form>
-  );
-}
+          type="text"
+          placeholder="Country"
+          value="United States"
+          readOnly
+          className="w-full px-3 py-2 border border-zinc-600 rounded-md"
+        />
+        <input
+          type="tel"
+          placeholder="Phone Number"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          required
+          className="w-full px-3 py-2 border border-zinc-600 rounded-md"
+        />
+        <input
+          type="email"
+          placeholder="Email Address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="w-full px-3 py-2 border border-zinc-600 rounded-md"
+        />
+        <CardElement className="border border-zinc-600 p-2 rounded-md" />
+        <button
+          type="submit"
+          disabled={!stripe || loading}
+          className="bg-blue-600 text-white w-full px-4 py-2 mt-4 rounded-md"
+        >
+          {loading ? (
+            <ReactLoading type="spin" color="#ffffff" height={24} width={24} />
+          ) : (
+            `Pay $${totalCost.toFixed(2)}`
+          )}
+        </button>
+  
+        {error && !loading && <p className="text-red-600 mt-2">{error}</p>}
+      </form>
+    );
+  }
+  

@@ -8,11 +8,11 @@ import Footer from "../components/Footer";
 function MyApp({ Component, pageProps }) {
   return (
     <CartProvider>
-      <div  className="bg-zinc-900 text-zinc-300">
       <Header/>
+      <div  className="bg-zinc-900 text-zinc-300">
       <Component {...pageProps}  className="p-8"/>
-      <Footer/>
       </div>
+      <Footer/>
     </CartProvider>
   );
 }
