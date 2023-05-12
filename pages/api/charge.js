@@ -12,6 +12,7 @@ export default async (req, res) => {
       address: { line1, city, state, postal_code, country },
       phoneNumber,
       email,
+      cartItems,  // Add this line
     } = req.body;
 
     try {
@@ -41,28 +42,30 @@ export default async (req, res) => {
           // Send email to the customer
           await sendEmail({
             to: email,
-            subject: "Thank you for your payment",
-            text: `Thank you for your payment. An email receipt has been sent to ${email}.`,
+            subject: "Thank you for your purchase!",
+            text: `Thank you for your purchase. Please let me know if you have any questions. Feel free to reply to this email and I'll get back to you as soon as I can.
+          
+          Order Details:
+          ${formatCustomerPaymentInfo(cartItems)}`,
           });
+          
 
           // Send email to yourself with customer and payment information
-          await sendEmail({
-            to: process.env.YOUR_EMAIL_ADDRESS,
-            subject: "New payment received",
-            text: `Customer information:\n${formatCustomerPaymentInfo(customer)}\nPayment information:\n${formatCustomerPaymentInfo(payment)}`,
-          });
+await sendEmail({
+  to: process.env.YOUR_EMAIL_ADDRESS,
+  subject: "New payment received",
+  text: `Customer information:\n${formatCustomerPaymentInfo(customer)}\nPayment information:\n${formatCustomerPaymentInfo(payment)}\nOrder Details:\n${formatCustomerPaymentInfo(cartItems)}`,
+});
           
 
           res.status(200).json({ success: true });
         } catch (emailError) {
-          console.error("Error sending email:", emailError.message);
           res.status(500).json({ success: false, message: emailError.message });
         }
       } else {
         res.status(400).json({ success: false, message: "Payment failed" });
       }
     } catch (error) {
-      console.error("Error in charge processing:", error.message);
       res.status(500).json({ success: false, message: error.message });
     }
   } else {
@@ -70,10 +73,19 @@ export default async (req, res) => {
     res.status(405).end("Method Not Allowed");
   }
 
-  function formatCustomerPaymentInfo(obj) {
-    return Object.entries(obj)
-      .map(([key, value]) => `${key}: ${value}`)
-      .join("\n");
-  }
+  function formatCustomerPaymentInfo(cartItems) {
+    if (!Array.isArray(cartItems)) {
+        return 'No items in the cart';
+    }
+
+    return cartItems.map((item, index) => {
+        return `Item ${index + 1}:
+        Product ID: ${item.product._id}
+        Product Name: ${item.product.name}
+        Price: $${item.product.price}
+        Quantity: ${item.quantity}\n`;
+    }).join('\n');
+}
+
   
 };

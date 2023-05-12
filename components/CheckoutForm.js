@@ -1,13 +1,16 @@
 // components/CheckoutForm.js
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useRouter } from "next/router";
 import ReactLoading from 'react-loading';
+import CartContext from "../components/CartContext";  // Import the CartContext
 
-export default function CheckoutForm({ totalCost, cartItems }) {
+
+export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
   const router = useRouter();
+  const { cart: cartItems, totalCost } = useContext(CartContext);
   const [error, setError] = useState("");
   const [name, setName] = useState("");
   const [addressLine1, setAddressLine1] = useState("");
@@ -58,7 +61,9 @@ export default function CheckoutForm({ totalCost, cartItems }) {
           },
           phoneNumber,
           email,
+          cartItems // Add this line
         }),
+        
       });
 
       const data = await response.json();
@@ -149,12 +154,14 @@ export default function CheckoutForm({ totalCost, cartItems }) {
           className="bg-blue-600 text-white w-full px-4 py-2 mt-4 rounded-md"
         >
           {loading ? (
-            <ReactLoading type="spin" color="#ffffff" height={24} width={24} />
-          ) : (
-            `Pay $${totalCost.toFixed(2)}`
-          )}
+  <div className="flex items-center space-x-2">
+    <ReactLoading type="spin" color="#ffffff" height={24} width={24} />
+    <span>Please wait. This might take a sec.</span>
+  </div>
+) : (
+  `Pay $${totalCost.toFixed(2)}`
+)}
         </button>
-  
         {error && !loading && <p className="text-red-600 mt-2">{error}</p>}
       </form>
     );

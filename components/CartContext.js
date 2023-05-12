@@ -30,7 +30,10 @@ export const CartProvider = ({ children }) => {
   };
 
   const clearCart = () => {
-    setCart([]);
+    return new Promise((resolve) => {
+      setCart([]);
+      resolve();
+    });
   };
   
 
