@@ -21,8 +21,11 @@ export default function SpinningLogo() {
   const [logoSpin, setLogoSpin] = useState(false);
 
   useEffect(() => {
-    setLogoSpin(true);
-    setTimeout(() => setLogoSpin(false), 1000);
+    const delay = 500; // delay in milliseconds
+    setTimeout(() => {
+      setLogoSpin(true);
+      setTimeout(() => setLogoSpin(false), 1000);
+    }, delay);
   }, []);
 
   const handleLogoClick = () => {
