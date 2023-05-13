@@ -8,9 +8,7 @@ export default function ProductCard({ product }) {
       className="bg-zinc-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg border"
       style={{
         width: "300px",
-        backgroundImage: "url('/cardbackground.png')",
-        backgroundSize: "110% auto",
-        backgroundPosition: "center",
+        backgroundColor: "black"
       }}
     >
       <div className="relative h-64 min-h-64">
