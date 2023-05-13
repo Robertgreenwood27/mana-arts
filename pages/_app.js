@@ -3,10 +3,12 @@ import 'react-masonry-css';
 import Header from "../components/Header";
 import { CartProvider } from "../components/CartContext";
 import Footer from "../components/Footer";
+import { Analytics } from '@vercel/analytics/react';
 
 
 function MyApp({ Component, pageProps }) {
   return (
+    <>
     <CartProvider>
       <Header/>
       <div  className="bg-zinc-900 text-zinc-300">
@@ -14,6 +16,8 @@ function MyApp({ Component, pageProps }) {
       </div>
       <Footer/>
     </CartProvider>
+    <Analytics />
+    </>
   );
 }
 

@@ -47,6 +47,7 @@ export default function Home() {
           clip-path: polygon(0% 6%, 100% 0%, 100% 94%, 0% 100%);
           margin-bottom: -30%;
           padding-top: 6%;
+          padding-bottom: 80px; // Add this line
           overflow: hidden;
         }
         @media (min-width: 768px) {
@@ -59,6 +60,7 @@ export default function Home() {
             clip-path: polygon(0% 0%, 100% 4%, 100% 100%, 0% 96%);
             margin-bottom: -15%;
             padding-top: 4%;
+            padding-bottom: 80px; // Add this line
           }
           .intro-section {
             margin-top: -1.5%;
