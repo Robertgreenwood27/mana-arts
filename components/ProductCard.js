@@ -1,3 +1,4 @@
+//components/productCard.js
 import React, { useContext } from "react";
 import { urlFor } from "../imageUrlBuilder";
 

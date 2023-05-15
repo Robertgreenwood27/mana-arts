@@ -37,9 +37,7 @@
               style={{
                 width: "400px",
                 height: "400px",
-                backgroundImage: `url('/cardbackground.png')`,
-                backgroundSize: "150%",
-                backgroundPosition: "center",
+                backgroundColor: "black",
               }}
             >
               <img
