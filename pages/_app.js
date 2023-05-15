@@ -10,11 +10,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
     <CartProvider>
-      <Header/>
-      <div  className="bg-zinc-900 text-zinc-300">
-      <Component {...pageProps}  className="p-8"/>
+      <div className="flex flex-col min-h-screen justify-between">
+        <Header/>
+        <div className="bg-zinc-900 text-zinc-300 flex-grow">
+          <Component {...pageProps} className="p-8"/>
+        </div>
+        <Footer/>
       </div>
-      <Footer/>
     </CartProvider>
     <Analytics />
     </>
@@ -22,4 +24,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
