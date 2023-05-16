@@ -104,6 +104,10 @@
       }`,
       { slug: params.slug }
     );
-
-    return { props: { product } };
+  
+    return { 
+      props: { product },
+      revalidate: 60 // Re-generate the page every 60 seconds
+    };
   }
+  

@@ -38,6 +38,7 @@ export async function getStaticProps() {
     props: {
       categories,
     },
+    revalidate: 60, // Re-generate the page every 60 seconds
   };
 }
 

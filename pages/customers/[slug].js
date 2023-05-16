@@ -60,6 +60,6 @@ export async function getStaticProps({ params }) {
     props: {
       products: customer.products,
     },
-    revalidate: 600,
+    revalidate: 60, // Re-generate the page every 60 seconds
   };
 }
