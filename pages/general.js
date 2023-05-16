@@ -10,10 +10,11 @@ export default function GeneralPage({ categories }) {
           {categories.map((category) => (
             <Link key={category.name} href={`/categories/${category.slug}`} passHref legacyBehavior>
               <a className="bg-zinc-800 rounded-lg shadow-lg p-1 flex flex-col items-center">
-                <img src={`/${category.name}.png`} alt={category.name} className="mb-2 rounded-lg" style={{
-        width: "300px",
-        backgroundColor: "black"
-      }}/>
+              <img src={category.imageUrl} alt={category.name} className="mb-2 rounded-lg" style={{
+  width: "300px",
+  backgroundColor: "black"
+}}/>
+
                 <h3 className="text-xl font-bold text-zinc-300">{category.name}</h3>
               </a>
             </Link>
@@ -30,7 +31,7 @@ export async function getStaticProps() {
       _id,
       name,
       "slug": slug.current,
-      "image": products[0].image.asset->url
+      "imageUrl": image.asset->url
     }`
   );
   return {
@@ -39,3 +40,4 @@ export async function getStaticProps() {
     },
   };
 }
+

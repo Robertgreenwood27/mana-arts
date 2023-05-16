@@ -6,7 +6,6 @@ import client from "../../sanity.config";
 
 
 export default function CategoryPage({ products }) {
-  console.log(products); // Add this line
   return (
     <div className="bg-zinc-900 flex flex-col justify-center items-center min-h-screen" style={{ backgroundImage: "url('/green.png')", backgroundSize: "cover", backgroundRepeat: "no-repeat" }}>
       <div className="container mx-auto py-8 justify-center text-center">

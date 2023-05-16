@@ -18,11 +18,9 @@ async function sendEmail({ to, subject, text }) {
       text,
     };
 
-    console.log("Sending email with options:", mailOptions);
 
     const result = await transporter.sendMail(mailOptions);
 
-    console.log("Email sent successfully with result:", result);
 
     return result;
   } catch (error) {

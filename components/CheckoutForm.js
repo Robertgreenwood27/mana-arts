@@ -69,10 +69,9 @@ export default function CheckoutForm() {
       const data = await response.json();
 
       if (data.success) {
-        console.log("Payment succeeded");
+  
         router.push("/success"); // Navigate to the success page
       } else {
-        console.log("Payment failed:", data.message);
         setError(data.message); // Set the error message
       }
     }

@@ -44,10 +44,8 @@ const handleSubmit = async (e) => {
   });
 
   if (response.ok) {
-    console.log('Email sent successfully.');
     router.push('/requestSent');
   } else {
-    console.error('Failed to send the email.');
   }
 
   // Reset form fields
