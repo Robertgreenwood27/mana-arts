@@ -24,7 +24,7 @@ const responsive = {
 export default function CarouselComponent({ categories }) {
   return (
     <Carousel
-      swipeable={false}
+      swipeable={true}
       draggable={false}
       showDots={false}
       responsive={responsive}
