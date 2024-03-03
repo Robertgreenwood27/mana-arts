@@ -38,7 +38,7 @@ export default function SpinningLogo() {
       <h1 className="text-4xl font-bold mb-4">Mana Arts</h1>
       <div className={logoSpin ? "spin" : ""} onClick={handleLogoClick}>
         <div>
-          <Image src="/logo.png" alt="Logo" width={200} height={200} />
+          <Image src="/newlogo.png" alt="Logo" width={200} height={200} />
         </div>
       </div>
       <SpinningLogoStyles />

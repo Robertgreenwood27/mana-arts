@@ -34,7 +34,7 @@ const Header = () => {
         {/* Logo */}
         <Link href="/" legacyBehavior>
           <a className="flex items-center space-x-2">
-            <Image src="/logo.png" alt="Logo" width={60} height={60} />
+            <Image src="/newlogo.png" alt="Logo" width={60} height={60} />
             <span className="text-lg font-bold">Mana Arts</span>
           </a>
         </Link>
